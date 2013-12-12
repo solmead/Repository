@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace DiversityPortal.Data.Repository
+namespace Repository
 {
     public abstract class BaseRepository<tt> : IRepository  where tt: class
     {

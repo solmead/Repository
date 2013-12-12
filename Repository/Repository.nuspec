@@ -6,13 +6,13 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <licenseUrl>https://github.com/solmead/Repository</licenseUrl>
+    <projectUrl>https://github.com/solmead/Repository</projectUrl>
+    <iconUrl>https://github.com/solmead/Repository</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright 2013</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags></tags>
   </metadata>
 </package>

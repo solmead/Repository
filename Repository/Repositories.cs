@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using HttpObjectCaching;
 
-namespace DiversityPortal.Data.Repository
+namespace Repository
 {
     public class Repositories
     {
