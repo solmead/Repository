@@ -7,17 +7,31 @@ namespace Repository
 {
     public class Repositories
     {
+        public static IEnumerable<IRepository> GetRepositoryList() 
+        {
+            return (from assembly in AppDomain.CurrentDomain.GetAssemblies()
+                            from t in assembly.GetTypes()
+                            where t.GetInterfaces().Contains(typeof(IRepository)) &&
+                                  t.GetConstructor(Type.EmptyTypes) != null
+                            select ((IRepository)Activator.CreateInstance(t))).ToList();
+        }
 
         public static BaseRepository<tt> GetRepository<tt>() where tt:class
         {
             var tpe = typeof (tt);
 
             var list = Cache.GetItem<List<IRepository>>(CacheArea.Request, "RepositoryList",
-                () => (from assembly in AppDomain.CurrentDomain.GetAssemblies()
-                       from t in assembly.GetTypes()
-                       where t.GetInterfaces().Contains(typeof(IRepository)) &&
-                             t.GetConstructor(Type.EmptyTypes) != null
-                       select ((IRepository)Activator.CreateInstance(t))).ToList());
+                () =>
+                {
+                    return GetRepositoryList().ToList();
+                });
+
+            if (list == null || list.Count == 0)
+            {
+                Cache.SetItem<List<IRepository>>(CacheArea.Request, "RepositoryList", null);
+                list = GetRepositoryList().ToList();
+            }
+
             try
             {
                 return (from i in list
