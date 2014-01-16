@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using HttpObjectCaching;
+using Repository.Properties;
 
 namespace Repository
 {
@@ -20,7 +21,7 @@ namespace Repository
         {
             var tpe = typeof (tt);
 
-            var list = Cache.GetItem<List<IRepository>>(CacheArea.Request, "RepositoryList",
+            var list = Cache.GetItem<List<IRepository>>(Settings.Default.RepositoriesCachedWhere, "RepositoryList",
                 () =>
                 {
                     return GetRepositoryList().ToList();
@@ -28,7 +29,7 @@ namespace Repository
 
             if (list == null || list.Count == 0)
             {
-                Cache.SetItem<List<IRepository>>(CacheArea.Request, "RepositoryList", null);
+                Cache.SetItem<List<IRepository>>(Settings.Default.RepositoriesCachedWhere, "RepositoryList", null);
                 list = GetRepositoryList().ToList();
             }
 
