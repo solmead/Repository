@@ -3,12 +3,14 @@ using System.Linq;
 
 namespace Repository
 {
-    public abstract class BaseRepository<tt> : IRepository  where tt: class
+    [Obsolete("Use IRepository instead")]
+    public abstract class BaseRepository<tt> : IRepository<tt>  where tt: class
     {
         public Type GetHandledType()
         {
             return typeof(tt);
         }
+
 
         protected abstract tt FindItem(int id);
 
@@ -19,7 +21,7 @@ namespace Repository
         protected abstract void DeleteItem(tt item);
 
 
-        public tt Find(int id)
+        public tt Find(int id) 
         {
             return FindItem(id);
         }
